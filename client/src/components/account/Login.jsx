@@ -134,7 +134,7 @@ const Login = ({ isUserAuthenticated }) => {
               account === 'login' ?
                   <Wrapper>
                     <TextField onChange={(e) => onValueChange(e)} value={login.username} name='username' label="Username" variant="standard" />
-                    <TextField onChange={(e) => onValueChange(e)} value={login.password} type='password' name='password' label="Password" variant="standard" />
+                    <TextField onChange={(e) => onValueChange(e)} value={login.password} name='password' type='password' label="Password" variant="standard" />
                     
                     {error && <Error>{error}</Error>}
 
@@ -149,7 +149,7 @@ const Login = ({ isUserAuthenticated }) => {
                   <Wrapper>
                     <TextField onChange={(e) => onInputChange(e)} name='name' label="Name" variant="standard" />
                     <TextField onChange={(e) => onInputChange(e)} name='username' label="Username" variant="standard" />
-                    <TextField onChange={(e) => onInputChange(e)} type='password' name='password' label="Password" variant="standard" />
+                    <TextField onChange={(e) => onInputChange(e)}  name='password' type='password' label="Password" variant="standard" />
 
                     <SignupButton onClick={() => signupUser()} >Create an Account</SignupButton>
                     <Text style={{ textAlign: 'center' }}>Already have an account?</Text>
