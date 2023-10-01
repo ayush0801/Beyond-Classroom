@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from "react";
 import {
   TextField,
   Box,
@@ -7,11 +7,13 @@ import {
   styled,
   InputAdornment,
   IconButton,
-} from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+} from "@mui/material";
+import Visibility from "@material-ui/icons/Visibility";
+import VisibilityOff from "@material-ui/icons/VisibilityOff";
+import { useNavigate } from "react-router-dom";
 
-import { API } from '../../service/api';
-import { DataContext } from '../../context/DataProvider';
+import { API } from "../../service/api";
+import { DataContext } from "../../context/DataProvider";
 
 const Component = styled(Box)`
   width: 400px;
@@ -19,11 +21,11 @@ const Component = styled(Box)`
   box-shadow: 5px 2px 5px 2px rgb(0 0 0/ 0.6);
 `;
 
-const Image = styled('img')({
+const Image = styled("img")({
   width: 300,
-  display: 'flex',
-  margin: 'auto',
-  padding: '0 0 0',
+  display: "flex",
+  margin: "auto",
+  padding: "0 0 0",
 });
 
 const Wrapper = styled(Box)`
@@ -70,28 +72,28 @@ const Error = styled(Typography)`
 `;
 
 const loginInitialValues = {
-  username: '',
-  password: '',
+  username: "",
+  password: "",
 };
 
 const signupInitialValues = {
-  name: '',
-  username: '',
-  password: '',
+  name: "",
+  username: "",
+  password: "",
 };
 
 const Login = ({ isUserAuthenticated }) => {
   const [login, setLogin] = useState(loginInitialValues);
   const [signup, setSignup] = useState(signupInitialValues);
-  const [error, showError] = useState('');
-  const [account, toggleAccount] = useState('login');
+  const [error, showError] = useState("");
+  const [account, toggleAccount] = useState("login");
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
 
   const navigate = useNavigate();
   const { setAccount } = useContext(DataContext);
 
   const imageURL =
-    'https://i.ibb.co/qB1dDw7/Beige-Blue-Simple-Illustrated-Study-Blog-Logo.png';
+    "https://i.ibb.co/qB1dDw7/Beige-Blue-Simple-Illustrated-Study-Blog-Logo.png";
 
   useEffect(() => {
     showError(false);
@@ -108,40 +110,49 @@ const Login = ({ isUserAuthenticated }) => {
   const loginUser = async () => {
     let response = await API.userLogin(login);
     if (response.isSuccess) {
-      showError('');
+      showError("");
 
-      sessionStorage.setItem('accessToken', `Bearer ${response.data.accessToken}`);
-      sessionStorage.setItem('refreshToken', `Bearer ${response.data.refreshToken}`);
-      setAccount({ name: response.data.name, username: response.data.username });
+      sessionStorage.setItem(
+        "accessToken",
+        `Bearer ${response.data.accessToken}`
+      );
+      sessionStorage.setItem(
+        "refreshToken",
+        `Bearer ${response.data.refreshToken}`
+      );
+      setAccount({
+        name: response.data.name,
+        username: response.data.username,
+      });
 
       isUserAuthenticated(true);
       setLogin(loginInitialValues);
-      navigate('/');
+      navigate("/");
     } else {
-      showError('Something went wrong! please try again later');
+      showError("Something went wrong! please try again later");
     }
   };
 
   const signupUser = async () => {
     let response = await API.userSignup(signup);
     if (response.isSuccess) {
-      showError('');
+      showError("");
       setSignup(signupInitialValues);
-      toggleAccount('login');
+      toggleAccount("login");
     } else {
-      showError('Something went wrong! please try again later');
+      showError("Something went wrong! please try again later");
     }
   };
 
   const toggleSignup = () => {
-    account === 'signup' ? toggleAccount('login') : toggleAccount('signup');
+    account === "signup" ? toggleAccount("login") : toggleAccount("signup");
   };
 
   return (
     <Component>
       <Box>
         <Image src={imageURL} alt="Login" />
-        {account === 'login' ? (
+        {account === "login" ? (
           <Wrapper>
             <TextField
               onChange={(e) => onValueChange(e)}
@@ -154,16 +165,14 @@ const Login = ({ isUserAuthenticated }) => {
               onChange={(e) => onValueChange(e)}
               value={login.password}
               name="password"
-              type={showPassword ? 'text' : 'password'} // Toggle password visibility
+              type={showPassword ? "text" : "password"} // Toggle password visibility
               label="Password"
               variant="standard"
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
-                    <IconButton
-                      onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
-                    >
-                      {showPassword ? 'Hide' : 'Show'}
+                    <IconButton onClick={() => setShowPassword(!showPassword)}>
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -175,8 +184,11 @@ const Login = ({ isUserAuthenticated }) => {
             <LoginButton variant="contained" onClick={() => loginUser()}>
               Login
             </LoginButton>
-            <Text style={{ textAlign: 'center' }}>OR</Text>
-            <SignupButton onClick={() => toggleSignup()} style={{ marginBottom: 50 }}>
+            <Text style={{ textAlign: "center" }}>OR</Text>
+            <SignupButton
+              onClick={() => toggleSignup()}
+              style={{ marginBottom: 50 }}
+            >
               Create an account
             </SignupButton>
           </Wrapper>
@@ -197,7 +209,7 @@ const Login = ({ isUserAuthenticated }) => {
             <TextField
               onChange={(e) => onInputChange(e)}
               name="password"
-              type={showPassword ? 'text' : 'password'} // Toggle password visibility
+              type={showPassword ? "text" : "password"} // Toggle password visibility
               label="Password"
               variant="standard"
               InputProps={{
@@ -206,15 +218,19 @@ const Login = ({ isUserAuthenticated }) => {
                     <IconButton
                       onClick={() => setShowPassword(!showPassword)} // Toggle password visibility
                     >
-                      {showPassword ? 'Hide' : 'Show'}
+                      {showPassword ? "Hide" : "Show"}
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
             />
 
-            <SignupButton onClick={() => signupUser()}>Create an Account</SignupButton>
-            <Text style={{ textAlign: 'center' }}>Already have an account?</Text>
+            <SignupButton onClick={() => signupUser()}>
+              Create an Account
+            </SignupButton>
+            <Text style={{ textAlign: "center" }}>
+              Already have an account?
+            </Text>
             <LoginButton onClick={() => toggleSignup()} variant="contained">
               Login
             </LoginButton>
