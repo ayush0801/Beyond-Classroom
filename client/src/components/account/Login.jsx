@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
 import {
   TextField,
   Box,
@@ -82,6 +84,18 @@ const signupInitialValues = {
   password: "",
 };
 
+const Toast = Swal.mixin({
+  toast: true,
+  position: 'top-end',
+  showConfirmButton: false,
+  timer: 3000,
+  timerProgressBar: true,
+  didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+  }
+})
+
 const Login = ({ isUserAuthenticated }) => {
   const [login, setLogin] = useState(loginInitialValues);
   const [signup, setSignup] = useState(signupInitialValues);
@@ -133,16 +147,20 @@ const Login = ({ isUserAuthenticated }) => {
     }
   };
 
-  const signupUser = async () => {
-    let response = await API.userSignup(signup);
-    if (response.isSuccess) {
-      showError("");
-      setSignup(signupInitialValues);
-      toggleAccount("login");
-    } else {
-      showError("Something went wrong! please try again later");
-    }
-  };
+    const signupUser = async () => {
+      let response = await API.userSignup(signup);
+      if (response.isSuccess) {
+        showError("");
+        setSignup(signupInitialValues);
+        toggleAccount("login");
+        Toast.fire({
+          icon: 'success',
+          title: 'Account Created successfully'
+        })
+      } else {
+        showError("Something went wrong! please try again later");
+      }
+    };
 
   const toggleSignup = () => {
     account === "signup" ? toggleAccount("login") : toggleAccount("signup");
