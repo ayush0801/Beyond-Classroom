@@ -199,12 +199,18 @@ const Login = ({ isUserAuthenticated }) => {
               name="name"
               label="Name"
               variant="standard"
+              InputLabelProps={{
+                shrink: signup.name !== "",
+              }}
             />
             <TextField
               onChange={(e) => onInputChange(e)}
               name="username"
               label="Username"
               variant="standard"
+              InputLabelProps={{
+                shrink: signup.username !== "",
+              }}
             />
             <TextField
               onChange={(e) => onInputChange(e)}
