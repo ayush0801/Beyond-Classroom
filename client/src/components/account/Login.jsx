@@ -153,10 +153,11 @@ const Login = ({ isUserAuthenticated }) => {
         showError("");
         setSignup(signupInitialValues);
         toggleAccount("login");
-        Toast.fire({
-          icon: 'success',
-          title: 'Account Created successfully'
-        })
+        Swal.fire({
+          icon: "success",
+          title: "Account Created Successful",
+          text: "You have successfully signed up!",
+        });
       } else {
         showError("Something went wrong! please try again later");
       }
