@@ -1,5 +1,6 @@
 # Beyond-Classroom
-Beyond the lecture hall..... 
+
+Beyond the lecture hall.....
 This is a personal blog website built using the MERN (MongoDB, Express, React, Node.js) stack for the students of IIT Jodhpur. The website allows students to create their own blog and share their thoughts, ideas, and experiences with the community.
 
 <p align="center">
@@ -7,6 +8,7 @@ This is a personal blog website built using the MERN (MongoDB, Express, React, N
 </p>
 
 ## Features
+
 - User authentication and authorization
 - CRUD functionality for blog posts
 - Comment system for posts
@@ -15,9 +17,10 @@ This is a personal blog website built using the MERN (MongoDB, Express, React, N
 
 ## Getting Started
 
-1. To get started with this project, you will need to clone the repository to your local machine. 
+1. To get started with this project, you will need to clone the repository to your local machine.
+
 ```
-git clone https://github.com/<username>/iit-jodhpur-personal-blog.git
+git clone https://github.com/ayush0801/Beyond-Classroom.git
 ```
 
 2. Once you have the repository on your machine, you can start by installing the dependencies by running the following command:
@@ -25,7 +28,9 @@ git clone https://github.com/<username>/iit-jodhpur-personal-blog.git
 ```bash
 npm install
 ```
+
 3. Start the development server
+
 ```
 npm start
 ```
@@ -34,11 +39,11 @@ npm start
 5.  Visit http://localhost:3000 to view the website
 
 ## Built With
+
 - [MongoDB](https://www.mongodb.com/)
 - [Express.js](https://expressjs.com/)
 - [React.js](https://reactjs.org/)
 - [Node.js](https://nodejs.org/)
-
 
 ## What's been done
 
@@ -51,7 +56,6 @@ npm start
 - [x] Ability to search and filter posts by title and content
 - [x] Ability to add comments and reply to other comments
 
-
 ## To-Do
 
 - [ ] Social media sharing functionality
@@ -62,9 +66,7 @@ npm start
 - [ ] Option to view the recent posts
 - [ ] Option to view the top authors
 
-
-
-
 ## Deployment
+
 Currently the website is deployed on render.
 To visit the website, click [here](https://beyond-classroom.onrender.com/)
